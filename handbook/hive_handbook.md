@@ -133,6 +133,15 @@ export HIVE_OPTS="--hiveconf x1=y1 --hiveconf x2=y2"
 ```
 SET mapred.job.tracker=myhost.mycompany.com:50030;
 SET -v;
+hive -e 'set -v'|less
+hive -e 'set -v'|grep hive.exec.reducers
+set hive.exec.reducers.bytes.per.reducer=2048000;
+set hive.exec.reducers.max=15;
+set mapreduce.job.reduces=10;
+set mapreduce.job.reduces;
+set hive.execution.engine=mr;
+set hive.execution.engine=tez;
+set hive.execution.engine=spark;
 ```
 
 #### [DDL Operations](https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-DDLOperations)
@@ -294,6 +303,24 @@ STORED AS TEXTFILE;
 ```
 
 ## [User Documentation](https://cwiki.apache.org/confluence/display/Hive#Home-UserDocumentation)
+
+### [Hive SQL Language Manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+
+#### Data Manipulation Statements
+
+##### [DML: Load, Insert, Update, Delete](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML)
+
+###### [Inserting data into Hive Tables from queries](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-InsertingdataintoHiveTablesfromqueries)
+
+INSERT [into directories from queries](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-Writingdataintothefilesystemfromqueries)
+
+```
+INSERT OVERWRITE DIRECTORY '/user/hive/warehouse/t7' SELECT * FROM t1;
+```
+
+
+
+
 
 ## [Administrator Documentation](https://cwiki.apache.org/confluence/display/Hive#Home-AdministratorDocumentation)
 
